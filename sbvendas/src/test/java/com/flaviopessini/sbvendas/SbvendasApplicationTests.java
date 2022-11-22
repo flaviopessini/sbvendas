@@ -1,0 +1,13 @@
+package com.flaviopessini.sbvendas;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SbvendasApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
