@@ -15,7 +15,7 @@
 
     <profiles>
         <profile>
-            <id>dev</id>
+            <id>development</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -25,7 +25,7 @@
             </properties>
         </profile>
         <profile>
-            <id>prod</id>
+            <id>production</id>
             <properties>
                 <project.packaging>war</project.packaging>
                 <tomcat.scope>provided</tomcat.scope>
