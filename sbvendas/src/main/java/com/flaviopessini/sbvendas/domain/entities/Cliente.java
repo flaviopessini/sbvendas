@@ -23,8 +23,21 @@ public class Cliente {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "nome", length = 100)
+    @Column(name = "nome", length = 20, nullable = false)
     private String nome;
+
+    @Column(name = "sobrenome", length = 50, nullable = false)
+    private String sobrenome;
+
+    @Column(name = "cpf", length = 15, nullable = false, unique = true)
+    private String cpf;
+
+    /**
+     * @return Nome completo do cliente.
+     */
+    public String getNomeCompleto() {
+        return nome + " " + sobrenome;
+    }
 
     @Override
     public boolean equals(Object o) {
