@@ -1,11 +1,13 @@
 package com.flaviopessini.sbvendas.domain.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "clientes")
@@ -31,6 +33,11 @@ public class Cliente {
 
     @Column(name = "cpf", length = 15, nullable = false, unique = true)
     private String cpf;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Set<Pedido> pedidos;
 
     /**
      * @return Nome completo do cliente.

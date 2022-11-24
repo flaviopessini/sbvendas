@@ -27,7 +27,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     Optional<Cliente> findOneByCpf(String cpf);
 
     /**
-     * Exemplo de consulta HQL — Carrega uma lista de clientes contendo o nome ou parte do nome informado.
+     * Exemplo de consulta JPQL — Carrega uma lista de clientes contendo o nome ou parte do nome informado.
      *
      * @param nome ou parte do nome.
      * @return lista de clientes encontrados.
@@ -43,4 +43,13 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
      */
     @Query(value = "select * from clientes c where c.nome like '%:nome%'", nativeQuery = true)
     List<Cliente> buscarPorNomeContendoQueryNativa(@Param("nome") String nome);
+
+    /**
+     * Consulta JPQL — Obtém o cliente mesmo se não houver pedidos registrados para ele.
+     *
+     * @param id código do cliente.
+     * @return cliente.
+     */
+    @Query("select c from Cliente c left join fetch c.pedidos where c.id = :id")
+    Cliente findClienteFetchPedidos(@Param("id") Integer id);
 }

@@ -23,6 +23,12 @@ public class ItemPedido {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "quantidade")
+    private Integer quantidade;
+
+    @Column(name = "valor_unit", precision = 10, scale = 2, nullable = false)
+    private BigDecimal valorUnit;
+
     @ManyToOne
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
@@ -30,12 +36,6 @@ public class ItemPedido {
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
-
-    @Column(name = "quantidade")
-    private Integer quantidade;
-
-    @Column(name = "valor_unit")
-    private BigDecimal valorUnit;
 
     @Override
     public boolean equals(Object o) {

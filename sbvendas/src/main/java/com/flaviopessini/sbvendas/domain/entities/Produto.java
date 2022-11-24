@@ -29,7 +29,7 @@ public class Produto {
     @Column(name = "descricao", length = 255)
     private String descricao;
 
-    @Column(name = "valor_unit")
+    @Column(name = "valor_unit", precision = 10, scale = 2, nullable = false)
     private BigDecimal valorUnit;
 
     @Override

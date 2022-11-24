@@ -6,6 +6,8 @@ import org.hibernate.Hibernate;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,15 +26,19 @@ public class Pedido {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "data")
+    private LocalDateTime data;
+
+    @Column(name = "total", precision = 10, scale = 2, nullable = false)
+    private BigDecimal total;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @Column(name = "data")
-    private LocalDateTime data;
-
-    @Column(name = "total")
-    private BigDecimal total;
+    @OneToMany(mappedBy = "pedido")
+    @ToString.Exclude
+    private List<ItemPedido> itemPedidoList = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
