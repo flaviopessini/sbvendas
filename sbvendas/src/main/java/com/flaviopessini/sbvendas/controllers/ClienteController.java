@@ -69,4 +69,15 @@ public class ClienteController {
         final var result = this.clienteRepository.save(cliente);
         return ResponseEntity.ok(result);
     }
+
+    @DeleteMapping("{id}")
+    @ResponseBody
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        if (this.clienteRepository.existsById(id)) {
+            this.clienteRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
