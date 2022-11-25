@@ -5,9 +5,11 @@ import com.flaviopessini.sbvendas.domain.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class ClienteController {
      * Obtém uma lista de todos os clientes registrados ou de clientes com base em parâmetros de busca
      * definidos no filtro através de uma consulta construída com ExampleMatcher.
      * Exemplo de uso do filtro: http://localhost:8080/api/clientes?nome=Flavio
+     *
      * @param filter propriedade(s) do objeto Cliente a serem utilizadas como parâmetro de busca.
      * @return se nenhum filtro for definido retornará uma lista com todos os clientes registrados,
      * ou uma lista de clientes encontrados.
@@ -52,5 +55,18 @@ public class ClienteController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping
+    @ResponseBody
+    public ResponseEntity<Cliente> save(@RequestBody Cliente cliente) {
+        if (cliente == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Corpo da requisição inválido"
+            );
+        }
+        final var result = this.clienteRepository.save(cliente);
+        return ResponseEntity.ok(result);
     }
 }
