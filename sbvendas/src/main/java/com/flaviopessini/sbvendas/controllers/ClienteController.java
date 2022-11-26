@@ -7,7 +7,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -33,7 +32,6 @@ public class ClienteController {
      * ou uma lista de clientes encontrados.
      */
     @GetMapping()
-    @ResponseBody
     public List<Cliente> find(Cliente filter) {
         if (filter == null) {
             return this.clienteRepository.findAll();
@@ -53,14 +51,19 @@ public class ClienteController {
      * @return Cliente
      */
     @GetMapping("{id}")
-    @ResponseBody
-    public ResponseEntity<Cliente> findById(@PathVariable Integer id) {
-        final var cliente = this.clienteRepository.findById(id);
+    public Cliente findById(@PathVariable Integer id) {
+        /*final var cliente = this.clienteRepository.findById(id);
         if (cliente.isPresent()) {
-            return ResponseEntity.ok(cliente.get());
+            return cliente.get();
         } else {
-            return ResponseEntity.notFound().build();
-        }
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado");
+        }*/
+
+        return this.clienteRepository
+                .findById(id)
+                .orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado")
+                );
     }
 
     /**
@@ -70,16 +73,9 @@ public class ClienteController {
      * @return Cliente.
      */
     @PostMapping
-    @ResponseBody
-    public ResponseEntity<Cliente> save(@RequestBody Cliente cliente) {
-        if (cliente == null) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST,
-                    "Corpo da requisição inválido"
-            );
-        }
-        final var result = this.clienteRepository.save(cliente);
-        return ResponseEntity.ok(result);
+    @ResponseStatus(HttpStatus.CREATED)
+    public Cliente save(@RequestBody Cliente cliente) {
+        return this.clienteRepository.save(cliente);
     }
 
     /**
@@ -89,34 +85,35 @@ public class ClienteController {
      *
      * @param id      código do cliente.
      * @param cliente objeto com os dados do cliente para ser atuazalido.
-     * @return HTTP 200 | HTTP 404
+     * @return Objeto cliente atualizado ou erro 404.
      */
     @PutMapping("{id}")
-    @ResponseBody
-    public ResponseEntity<Object> update(@PathVariable("id") Integer id, @RequestBody Cliente cliente) {
+    @ResponseStatus(HttpStatus.OK)
+    public Cliente update(@PathVariable Integer id, @RequestBody Cliente cliente) {
         return this.clienteRepository.findById(id).map(exists -> {
             // Pega o Id do registro cliente existente e define no novo objeto recebido pela
             // requisição, dessa forma o cliente será atualizado com os novos dados, pois já existe Id.
             cliente.setId(exists.getId());
             this.clienteRepository.save(cliente); // atualiza.
-            return ResponseEntity.ok().build();
-        }).orElseGet(() -> ResponseEntity.notFound().build());
+            return exists;
+        }).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado")
+        );
     }
 
     /**
      * Deleta o cliente.
      *
      * @param id código do cliente.
-     * @return Void.
      */
     @DeleteMapping("{id}")
-    @ResponseBody
-    public ResponseEntity<Void> delete(@PathVariable Integer id) {
-        if (this.clienteRepository.existsById(id)) {
-            this.clienteRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Integer id) {
+        this.clienteRepository.findById(id).map(cliente -> {
+            this.clienteRepository.delete(cliente);
+            return Void.class;
+        }).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado")
+        );
     }
 }
