@@ -1,5 +1,6 @@
 package com.flaviopessini.sbvendas.domain.entities;
 
+import com.flaviopessini.sbvendas.domain.StatusPedido;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -31,6 +32,10 @@ public class Pedido {
 
     @Column(name = "total", precision = 10, scale = 2, nullable = false)
     private BigDecimal total;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private StatusPedido status;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")

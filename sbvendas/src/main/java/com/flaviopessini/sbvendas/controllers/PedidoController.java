@@ -1,7 +1,9 @@
 package com.flaviopessini.sbvendas.controllers;
 
+import com.flaviopessini.sbvendas.domain.StatusPedido;
 import com.flaviopessini.sbvendas.domain.entities.ItemPedido;
 import com.flaviopessini.sbvendas.domain.entities.Pedido;
+import com.flaviopessini.sbvendas.dto.AtualizaStatusPedidoDTO;
 import com.flaviopessini.sbvendas.dto.InformacaoItemPedidoDTO;
 import com.flaviopessini.sbvendas.dto.InformacoesPedidoDTO;
 import com.flaviopessini.sbvendas.dto.PedidoDTO;
@@ -48,6 +50,12 @@ public class PedidoController {
         return pedido.getId();
     }
 
+    @PatchMapping("{id}")
+    public void updateStatusPedido(@PathVariable Integer id, @RequestBody AtualizaStatusPedidoDTO dto) {
+        final var novoStatus = dto.getNovoStatus();
+        this.pedidoService.atualizaStatus(id, StatusPedido.valueOf(novoStatus));
+    }
+
     /**
      * Converte um objeto Pedido para um DTO de informações de pedido.
      */
@@ -58,6 +66,7 @@ public class PedidoController {
                 .nomeCompletoCliente(pedido.getCliente().getNomeCompleto())
                 .cpf(pedido.getCliente().getCpf())
                 .total(pedido.getTotal())
+                .status(pedido.getStatus().name())
                 .items(convertToList(pedido.getItens()))
                 .build();
     }

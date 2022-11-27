@@ -1,5 +1,6 @@
 package com.flaviopessini.sbvendas.services.impl;
 
+import com.flaviopessini.sbvendas.domain.StatusPedido;
 import com.flaviopessini.sbvendas.domain.entities.ItemPedido;
 import com.flaviopessini.sbvendas.domain.entities.Pedido;
 import com.flaviopessini.sbvendas.domain.repositories.ClienteRepository;
@@ -8,6 +9,7 @@ import com.flaviopessini.sbvendas.domain.repositories.PedidoRepository;
 import com.flaviopessini.sbvendas.domain.repositories.ProdutoRepository;
 import com.flaviopessini.sbvendas.dto.ItemPedidoDTO;
 import com.flaviopessini.sbvendas.dto.PedidoDTO;
+import com.flaviopessini.sbvendas.exceptions.PedidoException;
 import com.flaviopessini.sbvendas.exceptions.RegraNegocioException;
 import com.flaviopessini.sbvendas.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setCliente(cliente);
         pedido.setData(LocalDateTime.now());
         pedido.setTotal(new BigDecimal(0)); // inicializa com valor 0
+        pedido.setStatus(StatusPedido.REALIZADO);
 
         final var itens = convertItems(pedido, dto.getItems());
         pedido.setItens(itens);
@@ -77,6 +80,17 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Optional<Pedido> obterPedidoCompleto(Integer id) {
         return this.pedidoRepository.findByIdFetchItens(id);
+    }
+
+    @Override
+    @Transactional
+    public void atualizaStatus(Integer id, StatusPedido statusPedido) {
+        this.pedidoRepository.findById(id).map(pedido -> {
+            pedido.setStatus(statusPedido);
+            return this.pedidoRepository.save(pedido);
+        }).orElseThrow(() ->
+                new PedidoException("Pedido não encontrado.")
+        );
     }
 
     /**
