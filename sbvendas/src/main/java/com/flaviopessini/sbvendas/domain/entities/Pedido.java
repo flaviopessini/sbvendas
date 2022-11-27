@@ -38,7 +38,7 @@ public class Pedido {
 
     @OneToMany(mappedBy = "pedido")
     @ToString.Exclude
-    private List<ItemPedido> itemPedidoList = new ArrayList<>();
+    private List<ItemPedido> itens = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,7 +55,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setTotal(new BigDecimal(0)); // inicializa com valor 0
 
         final var itens = convertItems(pedido, dto.getItems());
-        pedido.setItemPedidoList(itens);
+        pedido.setItens(itens);
 
         for (var i : itens) {
             var soma = i.getValorUnit().multiply(new BigDecimal(i.getQuantidade()));
@@ -63,8 +64,19 @@ public class PedidoServiceImpl implements PedidoService {
 
         this.pedidoRepository.save(pedido);
         this.itemPedidoRepository.saveAll(itens);
-        pedido.setItemPedidoList(itens);
+        pedido.setItens(itens);
         return pedido;
+    }
+
+    /**
+     * Carrega o pedido e os itens.
+     *
+     * @param id código do pedido.
+     * @return Retorna o pedido ou nulo.
+     */
+    @Override
+    public Optional<Pedido> obterPedidoCompleto(Integer id) {
+        return this.pedidoRepository.findByIdFetchItens(id);
     }
 
     /**
