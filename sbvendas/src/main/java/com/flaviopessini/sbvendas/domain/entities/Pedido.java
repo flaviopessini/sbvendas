@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,12 +29,16 @@ public class Pedido {
     @Column(name = "id")
     private Integer id;
 
+    @NotNull(message = "Campo [data] não pode ser nulo.")
     @Column(name = "data")
     private LocalDateTime data;
 
+    @PositiveOrZero(message = "Campo [total] deve ser positivo ou 0.")
+    @NotNull(message = "Campo [total] não pode ser nulo.")
     @Column(name = "total", precision = 10, scale = 2, nullable = false)
     private BigDecimal total;
 
+    @NotNull(message = "Campo [status] não pode ser nulo.")
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private StatusPedido status;

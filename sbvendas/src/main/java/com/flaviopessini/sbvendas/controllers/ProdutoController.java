@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController()
@@ -66,7 +67,7 @@ public class ProdutoController {
      */
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public Produto save(@RequestBody Produto produto) {
+    public Produto save(@RequestBody @Valid Produto produto) {
         return this.produtoRepository.save(produto);
     }
 
@@ -81,7 +82,7 @@ public class ProdutoController {
      */
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Produto update(@PathVariable Integer id, @RequestBody Produto produto) {
+    public Produto update(@PathVariable Integer id, @RequestBody @Valid Produto produto) {
         return this.produtoRepository.findById(id).map(exists -> {
             produto.setId(exists.getId());
             this.produtoRepository.save(produto);

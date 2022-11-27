@@ -1,6 +1,5 @@
 package com.flaviopessini.sbvendas.utils;
 
-import lombok.Data;
 import lombok.Getter;
 
 import java.util.Collections;
@@ -13,5 +12,9 @@ public class ApiErrors {
 
     public ApiErrors(String message) {
         this.errors = Collections.singletonList(message);
+    }
+
+    public ApiErrors(List<String> errors) {
+        this.errors = errors;
     }
 }

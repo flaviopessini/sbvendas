@@ -101,7 +101,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"John\",\r\n    \"sobrenome\": \"Doe\",\r\n    \"cpf\": \"000.111.222-99\"\r\n}",
+							"raw": "{\r\n    \"nome\": \"John\",\r\n    \"sobrenome\": \"Doe\",\r\n    \"cpf\": \"239.782.970-35\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

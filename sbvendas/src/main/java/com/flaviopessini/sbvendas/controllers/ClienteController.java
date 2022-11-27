@@ -10,12 +10,11 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController()
-@RequestMapping(value = "/api/clientes",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/clientes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClienteController {
 
     // Injeta em tempo de execução o repositório do cliente.
@@ -74,7 +73,7 @@ public class ClienteController {
      */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente save(@RequestBody Cliente cliente) {
+    public Cliente save(@RequestBody @Valid Cliente cliente) {
         return this.clienteRepository.save(cliente);
     }
 
@@ -89,7 +88,7 @@ public class ClienteController {
      */
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Cliente update(@PathVariable Integer id, @RequestBody Cliente cliente) {
+    public Cliente update(@PathVariable Integer id, @RequestBody @Valid Cliente cliente) {
         return this.clienteRepository.findById(id).map(exists -> {
             // Pega o Id do registro cliente existente e define no novo objeto recebido pela
             // requisição, dessa forma o cliente será atualizado com os novos dados, pois já existe Id.
