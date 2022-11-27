@@ -111,7 +111,7 @@ public class ClienteController {
     public void delete(@PathVariable Integer id) {
         this.clienteRepository.findById(id).map(cliente -> {
             this.clienteRepository.delete(cliente);
-            return Void.class;
+            return Void.TYPE;
         }).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado")
         );

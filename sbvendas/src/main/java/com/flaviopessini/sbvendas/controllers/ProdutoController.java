@@ -101,7 +101,7 @@ public class ProdutoController {
     public void delete(@PathVariable Integer id) {
         this.produtoRepository.findById(id).map(produto -> {
             this.produtoRepository.delete(produto);
-            return Void.class;
+            return Void.TYPE;
         }).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado")
         );
