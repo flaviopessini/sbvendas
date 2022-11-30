@@ -66,6 +66,7 @@ public class SecurityConfiguration {
                 .antMatchers("/api/pedidos/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/api/produtos/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/usuarios/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .authenticationProvider(this.authenticationProvider())
                 .httpBasic();
