@@ -71,9 +71,9 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-    @Bean
+/*    @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
-        /*final UserDetails user = User.builder()
+        *//*final UserDetails user = User.builder()
                 .username("user")
                 .password(passwordEncoder().encode("user"))
                 .roles("USER")
@@ -82,8 +82,8 @@ public class SecurityConfiguration {
                 .username("admin")
                 .password(passwordEncoder().encode("admin"))
                 .roles("USER", "ADMIN")
-                .build();*/
+                .build();*//*
         final var admin = this.usuarioService.loadUserByUsername("admin");
         return new InMemoryUserDetailsManager(admin);
-    }
+    }*/
 }
