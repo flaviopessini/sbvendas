@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -64,6 +65,7 @@ public class SecurityConfiguration {
                 .antMatchers("/api/clientes/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/api/pedidos/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/api/produtos/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/usuarios/**").permitAll()
                 .and()
                 .authenticationProvider(this.authenticationProvider())
                 .httpBasic();
@@ -71,9 +73,9 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-    @Bean
+/*    @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
-        /*final UserDetails user = User.builder()
+        *//*final UserDetails user = User.builder()
                 .username("user")
                 .password(passwordEncoder().encode("user"))
                 .roles("USER")
@@ -82,8 +84,8 @@ public class SecurityConfiguration {
                 .username("admin")
                 .password(passwordEncoder().encode("admin"))
                 .roles("USER", "ADMIN")
-                .build();*/
+                .build();*//*
         final var admin = this.usuarioService.loadUserByUsername("admin");
         return new InMemoryUserDetailsManager(admin);
-    }
+    }*/
 }
