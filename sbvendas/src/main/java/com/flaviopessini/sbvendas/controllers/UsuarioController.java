@@ -8,6 +8,7 @@ import com.flaviopessini.sbvendas.exceptions.InvalidPasswordException;
 import com.flaviopessini.sbvendas.services.impl.UsuarioServiceImpl;
 import com.flaviopessini.sbvendas.services.security.JwtService;
 import io.jsonwebtoken.MalformedJwtException;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +21,7 @@ import javax.validation.Valid;
 @RestController()
 @RequestMapping(value = "/api/usuarios", consumes = MediaType.APPLICATION_JSON_VALUE, produces =
         MediaType.APPLICATION_JSON_VALUE)
+@Api("API Usuários")
 public class UsuarioController {
 
     @Autowired
