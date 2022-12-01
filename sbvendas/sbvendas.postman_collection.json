@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f67602c7-2f39-42ae-ac97-70f4da86648b",
+		"_postman_id": "4eb1c8a5-81b8-4214-8f8c-1745b17c1fe7",
 		"name": "sbvendas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,6 +11,16 @@
 				{
 					"name": "All",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -34,6 +44,16 @@
 				{
 					"name": "Filter",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -67,6 +87,16 @@
 				{
 					"name": "Get by Id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -91,6 +121,16 @@
 				{
 					"name": "Save",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -123,6 +163,16 @@
 				{
 					"name": "Update",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -156,6 +206,16 @@
 				{
 					"name": "Delete",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [
 							{
@@ -185,6 +245,16 @@
 				{
 					"name": "All",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -208,6 +278,16 @@
 				{
 					"name": "Filter",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -237,6 +317,16 @@
 				{
 					"name": "Get by Id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -261,6 +351,16 @@
 				{
 					"name": "Save",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -293,6 +393,16 @@
 				{
 					"name": "Update",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -326,6 +436,16 @@
 				{
 					"name": "Delete",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [
 							{
@@ -355,6 +475,16 @@
 				{
 					"name": "Get by Id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -379,6 +509,16 @@
 				{
 					"name": "Save",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -411,6 +551,16 @@
 				{
 					"name": "Update status",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmbGF2aW8iLCJleHAiOjE2Njk5MDU4ODN9.9iPK_YcRIqC1YUEOrWqReMttVzS8Mrg6riVfq77cE56W8Z7tjhjGYsw0Cch6iIp4Do1oR6jbZg7lOB63M_uZhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [
 							{
@@ -436,6 +586,76 @@
 							"path": [
 								"pedidos",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"flavio\",\n    \"senha\": \"flavio2022\",\n    \"admin\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/usuarios",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"flavio\",\n    \"senha\": \"flavio2022\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_dev}}/usuarios/auth",
+							"host": [
+								"{{base_url_dev}}"
+							],
+							"path": [
+								"usuarios",
+								"auth"
 							]
 						}
 					},

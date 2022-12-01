@@ -1,6 +1,8 @@
 package com.flaviopessini.sbvendas.configs;
 
 import com.flaviopessini.sbvendas.services.impl.UsuarioServiceImpl;
+import com.flaviopessini.sbvendas.services.security.JwtAuthFilter;
+import com.flaviopessini.sbvendas.services.security.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,11 +14,13 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -31,6 +35,9 @@ public class SecurityConfiguration {
     @Lazy
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private JwtService jwtService;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
@@ -40,6 +47,11 @@ public class SecurityConfiguration {
     @Lazy
     public UserDetailsService userDetailsService() {
         return new UsuarioServiceImpl();
+    }
+
+    @Bean
+    public OncePerRequestFilter jwtFilter() {
+        return new JwtAuthFilter(jwtService, usuarioService);
     }
 
     @Bean
@@ -69,24 +81,11 @@ public class SecurityConfiguration {
                 .anyRequest().authenticated()
                 .and()
                 .authenticationProvider(this.authenticationProvider())
-                .httpBasic();
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
-/*    @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
-        *//*final UserDetails user = User.builder()
-                .username("user")
-                .password(passwordEncoder().encode("user"))
-                .roles("USER")
-                .build();
-        final UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles("USER", "ADMIN")
-                .build();*//*
-        final var admin = this.usuarioService.loadUserByUsername("admin");
-        return new InMemoryUserDetailsManager(admin);
-    }*/
 }

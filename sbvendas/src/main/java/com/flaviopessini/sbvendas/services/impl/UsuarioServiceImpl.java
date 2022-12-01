@@ -2,6 +2,7 @@ package com.flaviopessini.sbvendas.services.impl;
 
 import com.flaviopessini.sbvendas.domain.entities.Usuario;
 import com.flaviopessini.sbvendas.domain.repositories.UsuarioRepository;
+import com.flaviopessini.sbvendas.exceptions.InvalidPasswordException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,6 +36,17 @@ public class UsuarioServiceImpl implements UserDetailsService {
                 .password(user.getSenha()) // já está criptografada no banco de dados.
                 .roles(roles)
                 .build();
+    }
+
+    public UserDetails auth(Usuario usuario) {
+        final var userDetails = this.loadUserByUsername(usuario.getLogin());
+        final var isMatch = this.passwordEncoder.matches(usuario.getSenha(),
+                userDetails.getPassword());
+        if (isMatch) {
+            return userDetails;
+        } else {
+            throw new InvalidPasswordException();
+        }
     }
 
     @Transactional
