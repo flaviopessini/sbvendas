@@ -2,6 +2,7 @@ package com.flaviopessini.sbvendas.controllers;
 
 import com.flaviopessini.sbvendas.domain.entities.Produto;
 import com.flaviopessini.sbvendas.domain.repositories.ProdutoRepository;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequestMapping(value = "/api/produtos",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
+@Api("API Produtos")
 public class ProdutoController {
 
     @Autowired

@@ -8,6 +8,7 @@ import com.flaviopessini.sbvendas.dto.InformacaoItemPedidoDTO;
 import com.flaviopessini.sbvendas.dto.InformacoesPedidoDTO;
 import com.flaviopessini.sbvendas.dto.PedidoDTO;
 import com.flaviopessini.sbvendas.services.PedidoService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/api/pedidos",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
+@Api("API Pedidos")
 public class PedidoController {
 
     @Autowired

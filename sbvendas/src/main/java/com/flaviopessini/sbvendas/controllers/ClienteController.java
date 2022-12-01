@@ -2,6 +2,7 @@ package com.flaviopessini.sbvendas.controllers;
 
 import com.flaviopessini.sbvendas.domain.entities.Cliente;
 import com.flaviopessini.sbvendas.domain.repositories.ClienteRepository;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping(value = "/api/clientes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@Api("API Clientes")
 public class ClienteController {
 
     // Injeta em tempo de execução o repositório do cliente.
@@ -31,6 +33,7 @@ public class ClienteController {
      * ou uma lista de clientes encontrados.
      */
     @GetMapping()
+    @ApiOperation("Obter todos os clientes ou realizar uma busca")
     public List<Cliente> find(Cliente filter) {
         if (filter == null) {
             return this.clienteRepository.findAll();
@@ -50,7 +53,12 @@ public class ClienteController {
      * @return Cliente
      */
     @GetMapping("{id}")
-    public Cliente findById(@PathVariable Integer id) {
+    @ApiOperation("Obter detalhes de um cliente")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Cliente encontrado"),
+            @ApiResponse(code = 404, message = "Cliente não encontrado para o ID informado"),
+    })
+    public Cliente findById(@PathVariable @ApiParam("Código do cliente") Integer id) {
         /*final var cliente = this.clienteRepository.findById(id);
         if (cliente.isPresent()) {
             return cliente.get();
@@ -73,6 +81,11 @@ public class ClienteController {
      */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation("Salvar um cliente")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Cliente salvo com sucesso"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+    })
     public Cliente save(@RequestBody @Valid Cliente cliente) {
         return this.clienteRepository.save(cliente);
     }
@@ -88,7 +101,13 @@ public class ClienteController {
      */
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Cliente update(@PathVariable Integer id, @RequestBody @Valid Cliente cliente) {
+    @ApiOperation("Atualizar um cliente")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Cliente salvo com sucesso"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 404, message = "Cliente não encontrado para o ID informado"),
+    })
+    public Cliente update(@PathVariable @ApiParam("Código do cliente") Integer id, @RequestBody @Valid Cliente cliente) {
         return this.clienteRepository.findById(id).map(exists -> {
             // Pega o Id do registro cliente existente e define no novo objeto recebido pela
             // requisição, dessa forma o cliente será atualizado com os novos dados, pois já existe Id.
@@ -107,7 +126,12 @@ public class ClienteController {
      */
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer id) {
+    @ApiOperation("Excluir um cliente")
+    @ApiResponses({
+            @ApiResponse(code = 204, message = "Cliente excluído com sucesso"),
+            @ApiResponse(code = 404, message = "Cliente não encontrado para o ID informado"),
+    })
+    public void delete(@PathVariable @ApiParam("Código do cliente") Integer id) {
         this.clienteRepository.findById(id).map(cliente -> {
             this.clienteRepository.delete(cliente);
             return Void.TYPE;
