@@ -40,4 +40,8 @@ public class Usuario {
 
     @Column(name = "admin")
     private boolean admin;
+
+    @Column(name = "entity_version")
+    @Version
+    private Integer entityVersion;
 }

@@ -43,6 +43,10 @@ public class Produto {
     @Column(name = "valor_unit", precision = 10, scale = 2, nullable = false)
     private BigDecimal valorUnit;
 
+    @Column(name = "entity_version")
+    @Version
+    private Integer entityVersion;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

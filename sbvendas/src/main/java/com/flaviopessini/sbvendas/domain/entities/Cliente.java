@@ -48,6 +48,10 @@ public class Cliente {
     @Column(name = "cpf", length = 15, nullable = false, unique = true)
     private String cpf;
 
+    @Column(name = "entity_version")
+    @Version
+    private Integer entityVersion;
+
     @JsonIgnore
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     @ToString.Exclude

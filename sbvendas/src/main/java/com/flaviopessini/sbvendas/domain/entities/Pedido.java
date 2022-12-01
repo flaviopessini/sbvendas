@@ -43,6 +43,10 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
+    @Column(name = "entity_version")
+    @Version
+    private Integer entityVersion;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;

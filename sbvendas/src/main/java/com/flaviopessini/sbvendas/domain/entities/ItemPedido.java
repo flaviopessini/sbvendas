@@ -37,6 +37,10 @@ public class ItemPedido {
     @JoinColumn(name = "produto_id")
     private Produto produto;
 
+    @Column(name = "entity_version")
+    @Version
+    private Integer entityVersion;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
